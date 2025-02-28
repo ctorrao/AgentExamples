@@ -19,6 +19,8 @@ load_dotenv()
 # Initialize Tavily client
 tavily_api_key = os.getenv("TAVILY_API_KEY")
 tavily_client = TavilyClient(api_key=tavily_api_key)
+azure_openai_api_key = os.getenv("AZURE_OPENAI_API_KEY")
+azure_openai_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
 
 class Agent:
     def __init__(self, model="gpt-4o-mini"):
@@ -31,7 +33,7 @@ class Agent:
         self.name = "Pydantic Agent"
         # Create the agent with a comprehensive system prompt
         self.agent = PydanticAgent(
-            f'openai:{model}',
+            f'azure:{model}',
             system_prompt="\n".join([
                 role,
                 goal,

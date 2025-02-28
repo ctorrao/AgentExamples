@@ -16,6 +16,8 @@ load_dotenv()
 # Initialize Tavily client
 tavily_api_key = os.getenv("TAVILY_API_KEY")
 tavily_client = TavilyClient(api_key=tavily_api_key)
+azure_openai_api_key = os.getenv("AZURE_OPENAI_API_KEY")
+azure_openai_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
 
 
 class Agent:
@@ -112,7 +114,7 @@ class Agent:
             backstory=knowledge,
             tools=self.tools,
             verbose=False,
-            llm=model
+            llm=f'azure:{model}'
         )
 
     def chat(self, message):
